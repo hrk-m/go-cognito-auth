@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/hrk-m/go-cognito-auth/congnitoClient"
+	"github.com/hrk-m/go-cognito-auth/internal/congnitoClient"
 	"github.com/joho/godotenv"
 )
 
