@@ -12,34 +12,34 @@ import (
 )
 
 type User struct {
-	Name     string `json:"name" binding:"required"`
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required"`
+	Name     string `binding:"required"       json:"name"`
+	Email    string `binding:"required,email" json:"email"`
+	Password string `binding:"required"       json:"password"`
 }
 
 type UserConfirmation struct {
-	Email string `json:"email" binding:"required,email"`
-	Code  string `json:"code" binding:"required"`
+	Email string `binding:"required,email" json:"email"`
+	Code  string `binding:"required"       json:"code"`
 }
 
 type UserLogin struct {
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required"`
+	Email    string `binding:"required,email" json:"email"`
+	Password string `binding:"required"       json:"password"`
 }
 
 type UserLogOut struct {
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required"`
+	Email    string `binding:"required,email" json:"email"`
+	Password string `binding:"required"       json:"password"`
 }
 
 type UserForgotPassword struct {
-	Email string `json:"email" binding:"required,email"`
+	Email string `binding:"required,email" json:"email"`
 }
 
 type UserPasswordReset struct {
-	Email       string `json:"email" binding:"required,email"`
-	Code        string `json:"code" binding:"required"`
-	NewPassword string `json:"new_password" binding:"required"`
+	Email       string `binding:"required,email" json:"email"`
+	Code        string `binding:"required"       json:"code"`
+	NewPassword string `binding:"required"       json:"new_password"`
 }
 
 type CognitoInterface interface {
@@ -96,6 +96,7 @@ func (c *cognitoClient) SignUp(user *User) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -107,6 +108,7 @@ func (c *cognitoClient) SignOut(token string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -120,6 +122,7 @@ func (c *cognitoClient) ConfirmAccount(user *UserConfirmation) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -136,6 +139,7 @@ func (c *cognitoClient) SignIn(user *UserLogin) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return *result.AuthenticationResult.AccessToken, nil
 }
 
@@ -147,6 +151,7 @@ func (c *cognitoClient) GetUserByToken(token string) (*cognito.GetUserOutput, er
 	if err != nil {
 		return nil, err
 	}
+
 	return result, nil
 }
 
@@ -161,6 +166,7 @@ func (c *cognitoClient) UpdatePassword(user *UserLogin) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -173,6 +179,7 @@ func (c *cognitoClient) ForgotPassword(user *UserForgotPassword) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -189,5 +196,6 @@ func (c *cognitoClient) ResetPassword(user *UserPasswordReset) error {
 		fmt.Println("err", err)
 		return err
 	}
+
 	return nil
 }
