@@ -2,6 +2,7 @@ name: Typo check
 on:
   - pull_request
   - workflow_dispatch
+  - push
 
 jobs:
   run:
