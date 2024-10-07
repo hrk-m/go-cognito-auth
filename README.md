@@ -14,3 +14,7 @@ Gin フレームワークを使用して API エンドポイントを提供し�
 ```
 go run cmd/main.go
 ```
+
+## API
+
+`./go-cognito-auth.postman_collection.json` をpostmanに取り込んで確認ください.
